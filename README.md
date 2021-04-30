@@ -1,9 +1,10 @@
 # Embedded C Programming Examples with Continuous Integration and Code Quality
+# Heater Controller System Project
+## Project IN ACTION
 
-# ACTIVITY1
+Heater On
 
-## In Action
-![image](https://user-images.githubusercontent.com/80674639/116190446-5033fb80-a748-11eb-9a02-2284ef96587d.png)
+![image](https://user-images.githubusercontent.com/80674639/116702864-382dd780-a9e7-11eb-92cb-7f3feb55cf44.png)
 
 
 
