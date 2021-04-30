@@ -17,8 +17,8 @@ int main()
 {
     initialize_pins();
     initADC();
-    initPWM();
-    initUSART(103);
+    initializePWM();
+    USARTInit(103);
     uint16_t temp;
     char disp_val;
     while(1)
@@ -43,3 +43,4 @@ int main()
     }
     return 0;
 }
+
