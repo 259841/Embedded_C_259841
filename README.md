@@ -1,4 +1,4 @@
-# Embedded C Programming Examples with Continuous Integration and Code Quality
+# Case study-Embedded C 
 # Heater Controller System Project
 ## Project IN ACTION
 
