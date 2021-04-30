@@ -1,43 +1,43 @@
 #include "activity3.h"
-
-void initPWM()
+#define DUTY_CYCLE(Percent) (1024*Percent/100)
+void initializePWM()
 {
-    SetTimer1withFastPWMmode;
-    PrescaleTo64;
-    SetPWMoutputPin;
+    TCCR1A=(1<<COM1A1)|(1<<WGM11)|(1<<WGM10);
+    TCCR1B=(1<<CS11)|(1<<WGM12)|(1<<CS10);
+    DDRB|=(1<<PB1);
 }
 
 char PWMoutput(uint16_t value)
 {
-    char display_temp;
-    if(value>=0 && value<=200)
+    char temp_value;
+    if(value<=200)
     {
-        PWMout=Pwm20percent;
-        display_temp=20;
+        PWMout=DUTY_CYCLE(20.0);
+        temp_value=20;
         _delay_ms(20);
     }
-    else if(value>=201 && value<=500)
+    else if(value>200 && value<=500)
     {
-        PWMout=Pwm40percent;
-        display_temp=25;
+        PWMout=DUTY_CYCLE(40.0);
+        temp_value=25;
         _delay_ms(20);
     }
-    else if(value>=501 && value<=700)
+    else if(value>500 && value<=700)
     {
-        PWMout=Pwm70percent;
-        display_temp=29;
+        PWMout=DUTY_CYCLE(70.0);
+        temp_value=29;
         _delay_ms(20);
     }
-    else if(value>=701 && value<=1024)
+    else if(value>700 && value<=1024)
     {
-        PWMout=Pwm95percent;
-        display_temp=33;
+        PWMout=DUTY_CYCLE(95.0);
+        temp_value=33;
         _delay_ms(20);
     }
     else
     {
         PWMout=0;
-        display_temp=0;
+        temp_value=0;
     }
-    return display_temp;
+    return temp_value;
 }
