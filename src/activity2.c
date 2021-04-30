@@ -2,20 +2,20 @@
 
 void initADC()
 {
-   MuxReg=(1<<RefToVcc); // Aref=Avcc, set for 1024
-   CntrlReg=(1<<EnableADC)|(7<<SetFCPU); // Enable ADC and Set for FCPU 128
+    ADMUX = (1<<REFS0);
+    ADCSRA = (1<<ADEN)|(7<<ADPS0);
 }
 
-uint16_t ReadADC(uint8_t select_channel)
+uint16_t ReadADC(uint8_t ch)
 {
-   MuxReg&=0xf8;
-   select_channel=select_channel&0b00000111;
-   MuxReg|=select_channel;
-   //Start single conversion
-   CntrlReg|=(1<<StrtConv);
-   //wait for conversion to complete
-   while(!(CntrlReg&(1<<ADCInterruptFlag)));
-   // clear ADIF by passing 1
-   CntrlReg|=(1<<ADCInterruptFlag);
-   return AtoDvalue;
+    ADMUX &= 0xf8;
+    ch = ch&0b00000111;
+    ADMUX |= ch;
+    //start conversion
+    ADCSRA |= (1<<ADSC);
+    //wait for conversion to complete
+    while(!(ADCSRA&(1<<ADIF)));
+    //clear ADIF by writing 1
+    ADCSRA |= (1<<ADIF);
+    return(ADC);
 }
